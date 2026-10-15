@@ -1,0 +1,122 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+---
+<section class="section contact" id="formulario" aria-labelledby="contact-title">
+  <Container class="contact__grid">
+    <div class="contact__intro">
+      <SectionHeading eyebrow="Avaliação de demanda" title="Conte sobre a necessidade da sua operação." description="Organize as informações que já conhece. Nesta versão, a validação é apenas demonstrativa e ocorre no navegador." />
+      <div class="contact__notice" role="note">
+        <span class="contact__notice-icon" aria-hidden="true">i</span>
+        <div><strong>Modo de demonstração</strong><p>Os dados não serão enviados nem armazenados. Não informe dados confidenciais.</p></div>
+      </div>
+      <div class="contact__info-list">
+        <div><span>01</span><p><strong>Descreva o contexto</strong><small>Empresa, segmento e local de aplicação.</small></p></div>
+        <div><span>02</span><p><strong>Explique a necessidade</strong><small>Categoria, objetivo e dados técnicos disponíveis.</small></p></div>
+      </div>
+    </div>
+    <form class="demand-form" id="demand-form" novalidate>
+      <div class="demand-form__heading"><span>FORMULÁRIO DEMONSTRATIVO</span><span aria-hidden="true">JS / 01</span></div>
+      <div class="form-field">
+        <label for="company">Nome da empresa <span aria-hidden="true">*</span></label>
+        <input id="company" name="company" type="text" autocomplete="organization" required minlength="2" placeholder="Ex.: Nome da empresa" aria-describedby="company-error" />
+        <small class="field-error" id="company-error"></small>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="segment">Segmento</label>
+          <select id="segment" name="segment">
+            <option value="">Selecione (opcional)</option>
+            <option>Comercial</option><option>Industrial</option><option>Residencial</option><option>Outro</option><option>Ainda não definido</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="location">Cidade e unidade/local</label>
+          <input id="location" name="location" type="text" placeholder="Cidade / unidade" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="category">Tipo geral de necessidade <span aria-hidden="true">*</span></label>
+        <select id="category" name="category" required aria-describedby="category-error">
+          <option value="">Selecione uma categoria</option>
+          <option value="inox">Soluções em aço inox</option>
+          <option value="metal">Estruturas e soluções metálicas</option>
+          <option value="custom">Projeto sob medida</option>
+          <option value="other">Outra / ainda não sei</option>
+        </select>
+        <small class="field-error" id="category-error"></small>
+      </div>
+      <div class="form-field">
+        <label for="description">Descrição da aplicação <span aria-hidden="true">*</span></label>
+        <textarea id="description" name="description" rows="4" required minlength="10" placeholder="Descreva a necessidade e as informações já disponíveis." aria-describedby="description-hint description-error"></textarea>
+        <div class="field-helper" id="description-hint">Não inclua dados confidenciais ou pessoais desnecessários.</div>
+        <small class="field-error" id="description-error"></small>
+      </div>
+      <div class="form-field">
+        <label for="additional">Informações adicionais <span class="optional-label">Opcional</span></label>
+        <textarea id="additional" name="additional" rows="2" placeholder="Medidas, requisitos ou referências disponíveis."></textarea>
+      </div>
+      <button class="button button--primary demand-form__submit" type="button" id="validate-demo">Simular validação <span class="button__arrow" aria-hidden="true">↗</span></button>
+      <p class="form-feedback" id="form-feedback" role="status" aria-live="polite" tabindex="-1"></p>
+      <p class="demand-form__disclaimer">O preenchimento não garante orçamento, visita, prazo, aceitação ou execução de qualquer serviço.</p>
+    </form>
+  </Container>
+</section>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#demand-form');
+  const validateButton = document.querySelector<HTMLButtonElement>('#validate-demo');
+  const feedback = document.querySelector<HTMLElement>('#form-feedback');
+  const requiredFields = [
+    { id: 'company', errorId: 'company-error', message: 'Informe o nome da empresa.' },
+    { id: 'category', errorId: 'category-error', message: 'Selecione o tipo geral de necessidade.' },
+    { id: 'description', errorId: 'description-error', message: 'Descreva a aplicação com pelo menos 10 caracteres.' },
+  ];
+
+  const validateLocal = () => {
+    if (!form || !feedback) return;
+    let firstInvalid: HTMLElement | null = null;
+    let invalidCount = 0;
+    requiredFields.forEach((field) => {
+      const input = document.getElementById(field.id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+      const error = document.getElementById(field.errorId);
+      const isValid = Boolean(input && input.checkValidity());
+      if (input) input.setAttribute('aria-invalid', String(!isValid));
+      if (error) error.textContent = isValid ? '' : (input?.validity.valueMissing ? field.message : field.id === 'company' ? 'Use pelo menos 2 caracteres.' : field.id === 'description' ? 'Use pelo menos 10 caracteres para descrever a aplicação.' : field.message);
+      if (!isValid) {
+        invalidCount += 1;
+        firstInvalid ??= input;
+      }
+    });
+    feedback.classList.remove('form-feedback--success', 'form-feedback--error');
+    if (invalidCount > 0) {
+      feedback.textContent = `Revise os ${invalidCount} campo(s) obrigatório(s) indicado(s) acima. Nenhum dado foi enviado.`;
+      feedback.classList.add('form-feedback--error');
+      firstInvalid?.focus();
+      return;
+    }
+    feedback.textContent = 'Validação local concluída. Nenhuma solicitação foi enviada.';
+    feedback.classList.add('form-feedback--success');
+    feedback.focus();
+  };
+
+  validateButton?.addEventListener('click', validateLocal);
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    validateLocal();
+  });
+  requiredFields.forEach((field) => {
+    const input = document.getElementById(field.id);
+    input?.addEventListener('input', () => {
+      input.setAttribute('aria-invalid', String(!(input as HTMLInputElement).checkValidity()));
+      const error = document.getElementById(field.errorId);
+      if ((input as HTMLInputElement).checkValidity() && error) error.textContent = '';
+    });
+    input?.addEventListener('change', () => {
+      if ((input as HTMLInputElement).checkValidity()) {
+        input.setAttribute('aria-invalid', 'false');
+        const error = document.getElementById(field.errorId);
+        if (error) error.textContent = '';
+      }
+    });
+  });
+</script>

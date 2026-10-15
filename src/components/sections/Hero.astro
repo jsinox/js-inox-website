@@ -1,0 +1,40 @@
+---
+import Container from '@components/ui/Container.astro';
+import Button from '@components/ui/Button.astro';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <Container class="hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Soluções em aço inox e estruturas metálicas</p>
+      <h1 id="hero-title">Sua necessidade em inox ou estruturas metálicas começa com um <span>escopo bem entendido.</span></h1>
+      <p class="hero__lead">Apresente o contexto da aplicação, o local e as informações disponíveis para uma avaliação inicial dos próximos passos.</p>
+      <div class="hero__actions">
+        <Button href="#formulario">Apresentar minha demanda</Button>
+        <Button href="#solucoes" variant="secondary">Conhecer as soluções</Button>
+      </div>
+      <div class="hero__meta">
+        <span class="hero__meta-line" aria-hidden="true"></span>
+        <p>Do inox às estruturas metálicas, com a necessidade no centro da conversa.</p>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Símbolo oficial JS em acabamento metálico, elemento da identidade visual da marca">
+      <div class="hero-visual__topline">
+        <span>JS INOX</span>
+        <span class="hero-visual__index">01 / VISÃO</span>
+      </div>
+      <div class="hero-visual__grid" aria-hidden="true"></div>
+      <div class="hero-visual__symbol-wrap">
+        <img class="hero-visual__symbol" src="/brand/simbolo-js.webp" width="2000" height="2000" alt="" fetchpriority="high" />
+      </div>
+      <div class="hero-visual__foot">
+        <div>
+          <span class="hero-visual__overline">UMA NECESSIDADE</span>
+          <strong>Um escopo claro.</strong>
+        </div>
+        <span class="hero-visual__red-mark" aria-hidden="true"></span>
+      </div>
+      <span class="hero-visual__vertical-label" aria-hidden="true">INOX · METAL · APLICAÇÃO</span>
+    </div>
+  </Container>
+  <div class="hero__bottom-rule" aria-hidden="true"></div>
+</section>

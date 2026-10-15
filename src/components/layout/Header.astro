@@ -1,0 +1,38 @@
+---
+import { navigation } from '@data/navigation';
+import Button from '@components/ui/Button.astro';
+---
+<header class="site-header" id="topo">
+  <div class="container site-header__inner">
+    <a class="brand" href="#topo" aria-label="JS INOX — início">
+      <img src="/brand/logo-horizontal.webp" width="2048" height="768" alt="JS INOX" />
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      <Button href="#formulario" class="nav-cta">Apresentar minha demanda</Button>
+    </nav>
+  </div>
+</header>
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('#primary-navigation');
+  const closeMenu = () => {
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Abrir menu');
+    navigation?.classList.remove('is-open');
+  };
+  menuButton?.addEventListener('click', () => {
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Abrir menu' : 'Fechar menu');
+    navigation?.classList.toggle('is-open', !isOpen);
+  });
+  navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', (event) => {
+    if (!navigation?.contains(event.target as Node) && !menuButton?.contains(event.target as Node)) closeMenu();
+  });
+</script>
