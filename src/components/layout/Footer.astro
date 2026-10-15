@@ -1,0 +1,30 @@
+---
+import { navigation } from '@data/navigation';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__main">
+      <div class="site-footer__brand-block">
+        <a class="site-footer__logo" href="#topo" aria-label="JS INOX — voltar ao topo">
+          <img src="/brand/logo-horizontal.webp" width="2048" height="768" loading="lazy" alt="JS INOX" />
+        </a>
+        <p>Soluções em aço inox e estruturas metálicas para diferentes aplicações.</p>
+        <span class="location-label"><span aria-hidden="true">⌖</span> Fortaleza — CE</span>
+      </div>
+      <div class="site-footer__nav-block">
+        <h2>Navegação</h2>
+        <nav aria-label="Navegação do rodapé">
+          {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
+      <div class="site-footer__note">
+        <span class="status-mark" aria-hidden="true"></span>
+        <p>Informações de contato, dados legais e modalidades de atendimento aguardam confirmação.</p>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© {new Date().getFullYear()} JS INOX</span>
+      <span>Apresentação institucional · versão local demonstrativa</span>
+    </div>
+  </div>
+</footer>
