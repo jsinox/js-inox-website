@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import Hero from '@components/sections/Hero.astro';
+import Institutional from '@components/sections/Institutional.astro';
+import Solutions from '@components/sections/Solutions.astro';
+import Segments from '@components/sections/Segments.astro';
+import Process from '@components/sections/Process.astro';
+import Offer from '@components/sections/Offer.astro';
+import Projects from '@components/sections/Projects.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import ContactForm from '@components/sections/ContactForm.astro';
+import FinalCTA from '@components/sections/FinalCTA.astro';
+---
+<BaseLayout>
+  <Header />
+  <main id="conteudo">
+    <Hero />
+    <Institutional />
+    <Solutions />
+    <Segments />
+    <Process />
+    <Offer />
+    <Projects />
+    <FAQ />
+    <ContactForm />
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

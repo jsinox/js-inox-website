@@ -1,0 +1,27 @@
+---
+import '@styles/global.css';
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'JS INOX — Soluções em aço inox e estruturas metálicas',
+  description = 'Conheça as categorias divulgadas pela JS INOX e organize as informações da sua necessidade para uma avaliação inicial.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <title>{title}</title>
+    <link rel="icon" type="image/webp" href="/brand/simbolo-js.webp" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <slot />
+  </body>
+</html>
