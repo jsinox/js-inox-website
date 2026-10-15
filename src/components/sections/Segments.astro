@@ -1,0 +1,20 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import { segments } from '@data/site';
+---
+<section class="section segments" id="contextos" aria-labelledby="segments-title">
+  <Container>
+    <SectionHeading eyebrow="Contextos de aplicação" title="Pensado para diferentes ambientes e operações." description="O foco visual prioriza o mercado comercial B2B, sem excluir os contextos residencial e industrial mencionados no material informado." />
+    <div class="segment-grid">
+      {segments.map((item) => (
+        <article class:list={['segment-card', item.number === '01' && 'segment-card--featured']}>
+          <div class="segment-card__top"><span class="segment-card__number">{item.number}</span><span class="segment-card__arrow" aria-hidden="true">↗</span></div>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))}
+    </div>
+    <p class="section-caption">Os segmentos representam públicos e contextos de interesse; não constituem uma lista de clientes atendidos.</p>
+  </Container>
+</section>

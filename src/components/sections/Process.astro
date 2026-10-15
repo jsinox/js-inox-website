@@ -1,0 +1,19 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import { processSteps } from '@data/site';
+---
+<section class="section process" id="processo" aria-labelledby="process-title">
+  <Container>
+    <SectionHeading eyebrow="Como funciona" title="Da necessidade ao próximo passo." description="Uma sequência simples para organizar o contexto e identificar as informações que ainda precisam ser confirmadas." />
+    <ol class="process-list">
+      {processSteps.map((step) => (
+        <li class="process-step">
+          <div class="process-step__marker"><span>{step.number}</span><i aria-hidden="true"></i></div>
+          <div class="process-step__body"><h3>{step.title}</h3><p>{step.description}</p></div>
+        </li>
+      ))}
+    </ol>
+    <div class="process__disclaimer"><span aria-hidden="true">!</span><p>A apresentação de uma demanda não garante orçamento, visita técnica, prazo, aceitação ou execução. As condições dependem de confirmação operacional.</p></div>
+  </Container>
+</section>

@@ -1,0 +1,26 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+---
+<section class="section projects" id="projetos" aria-labelledby="projects-title">
+  <Container>
+    <div class="projects__layout">
+      <SectionHeading eyebrow="Projetos e comprovações" title="Conteúdo real, validado antes de ser publicado." description="Esta área está preparada para receber imagens autorizadas, descrições e informações confirmadas pela JS INOX." />
+      <div class="project-placeholder">
+        <div class="project-placeholder__graphic" aria-hidden="true">
+          <div class="project-placeholder__frame project-placeholder__frame--one"></div>
+          <div class="project-placeholder__frame project-placeholder__frame--two"></div>
+          <div class="project-placeholder__steel"></div>
+          <span class="project-placeholder__cross project-placeholder__cross--one"></span>
+          <span class="project-placeholder__cross project-placeholder__cross--two"></span>
+          <span class="project-placeholder__graphic-label">ÁREA EDITORIAL</span>
+        </div>
+        <div class="project-placeholder__body">
+          <span class="status-pill"><span aria-hidden="true"></span>Aguardando validação</span>
+          <h3>Seleção de materiais institucionais</h3>
+          <p>Fotos, autoria, autorização de uso e descrições ainda precisam ser confirmadas. Nenhuma imagem ilustrativa é apresentada como obra executada pela empresa.</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

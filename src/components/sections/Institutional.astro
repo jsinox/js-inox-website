@@ -1,0 +1,34 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+const pillars = [
+  { no: '01', title: 'Contexto operacional', text: 'Entender onde e como a solução será aplicada.' },
+  { no: '02', title: 'Necessidade e aplicação', text: 'Organizar o objetivo e as informações disponíveis.' },
+  { no: '03', title: 'Dados técnicos', text: 'Considerar medidas, referências e requisitos conhecidos.' },
+  { no: '04', title: 'Próximo passo', text: 'Identificar o que ainda precisa ser esclarecido ou confirmado.' },
+];
+---
+<section class="section institutional" id="sobre" aria-labelledby="institutional-title">
+  <Container>
+    <div class="institutional__intro">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Sobre a abordagem</p>
+        <h2 id="institutional-title">Diferentes aplicações exigem <span>informações claras</span> desde o início.</h2>
+      </div>
+      <div class="institutional__copy">
+        <p>A JS INOX divulga soluções em aço inox e estruturas metálicas para contextos residenciais, comerciais e industriais.</p>
+        <p>A definição de cada demanda depende da aplicação, das informações técnicas disponíveis e da confirmação das condições de atendimento.</p>
+      </div>
+    </div>
+    <div class="pillar-grid">
+      {pillars.map((pillar) => (
+        <article class="pillar-card">
+          <span class="pillar-card__number">{pillar.no}</span>
+          <span class="pillar-card__rule" aria-hidden="true"></span>
+          <h3>{pillar.title}</h3>
+          <p>{pillar.text}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

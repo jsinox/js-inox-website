@@ -1,0 +1,23 @@
+---
+import Container from '@components/ui/Container.astro';
+import Button from '@components/ui/Button.astro';
+---
+<section class="offer" id="avaliacao" aria-labelledby="offer-title">
+  <Container class="offer__inner">
+    <div class="offer__content">
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__dot" aria-hidden="true"></span>Próximo passo</p>
+      <h2 id="offer-title">Avaliação inicial da sua demanda.</h2>
+      <p>Informe a empresa, o local de aplicação, a necessidade e os dados técnicos disponíveis. Assim, as informações ficam organizadas para avaliar os próximos passos.</p>
+      <Button href="#formulario" variant="light">Preparar minha demanda</Button>
+      <small>Esta versão do site é demonstrativa. O formulário não envia nem armazena dados.</small>
+    </div>
+    <div class="offer__checklist" aria-label="Informações para organizar">
+      <div class="offer__checklist-head"><span>INFORMAÇÕES-CHAVE</span><span aria-hidden="true">04 ITENS</span></div>
+      <div class="offer__check"><span>01</span><p>Empresa e segmento</p><i aria-hidden="true">↗</i></div>
+      <div class="offer__check"><span>02</span><p>Local de aplicação</p><i aria-hidden="true">↗</i></div>
+      <div class="offer__check"><span>03</span><p>Necessidade e objetivo</p><i aria-hidden="true">↗</i></div>
+      <div class="offer__check"><span>04</span><p>Dados técnicos disponíveis</p><i aria-hidden="true">↗</i></div>
+    </div>
+    <span class="offer__watermark" aria-hidden="true">JS</span>
+  </Container>
+</section>
